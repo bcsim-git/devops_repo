@@ -19,7 +19,9 @@ pipeline {
           }
           steps {
                  echo "Development container updated"
-                 sh "bolt plan run module_web::plan_web_update -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root"
+                 sh '''#!/bin/bash
+                 bolt plan run module_web::plan_web_update -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
+                 '''
           }
           }
           stage('Four') {
@@ -34,7 +36,9 @@ pipeline {
           }
           steps {
                  echo "Prodcution container updated"
-                 sh "bolt plan run module_web::plan_web_update -t puppetclient2 -u clientadm -p user123 --no-host-key-check --run-as root"
+                 sh '''#!/bin/bash
+                 bolt plan run module_web::plan_web_update -t puppetclient2 -u clientadm -p user123 --no-host-key-check --run-as root
+                 '''
 
           }
           }
