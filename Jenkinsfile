@@ -19,7 +19,8 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 bolt script run '/root/tasks/script_to_run' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
+                 bolt script run '/root/tasks/script_to_run' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
+                 cp -p /testdir/clone/devops_repo/script_to_run /root/tasks/script_to_run
                  '''
                  echo "Development container updated"
           }
