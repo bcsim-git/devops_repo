@@ -4,5 +4,5 @@ puppet resource package vcsrepo ensure=present
 puppet resource file /testdir/clone ensure=absent force=true
 puppet resource file /testdir/clone ensure=directory
 cd /testdir/clone
-git clone 
-puppet apply /root/pull_devops_repo/index_write
+git clone https://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@github.com/bcsim-git/devops-repo.git
+puppet apply /testdir/clone/devops-repo/index_write
