@@ -6,4 +6,4 @@ puppet resource file /testdir ensure=directory
 puppet resource file /testdir/clone ensure=directory
 cd /testdir/clone
 git clone https://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@github.com/bcsim-git/devops-repo.git
-puppet apply /testdir/clone/devops-repo/index_write
+cp -p /testdir/clone/devops-repo/index.html /var/www/html
