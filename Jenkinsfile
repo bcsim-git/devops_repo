@@ -19,7 +19,12 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 bolt command run 'puppet resource package git ensure=present; puppet resource package vcsrepo ensure=present; puppet apply /root/pull_devops_repo/index_write' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
+                 bolt command run '
+                 puppet resource file '/root/pull_devops_repo' ensure=absent force=true;
+                 puppet resource file '/root/pull_devops_repo' ensure=directory;
+                 puppet apply /root/pull_devops_repo/index_write;
+                 cp -p /root/pull_devops_repo/index.html /var/www/html' 
+                 -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
                  echo "Development container updated"
           }
@@ -38,7 +43,7 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 bolt command run 'puppet resource package git ensure=present; puppet resource package vcsrepo ensure=present; puppet apply /root/pull_devops_repo/index_write' -t puppetclient2 -u clientadm -p user123 --no-host-key-check --run-as root;
+                 bolt script run '/root/pull_devops_repo/index_write' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
                  echo "Prodcution container updated"
           }
