@@ -1,7 +1,8 @@
 #!/bin/bash
 puppet resource package git ensure=present
-puppet resource package vcsrepo ensure=present
+puppet module install puppetlabs-vcsrepo
 puppet resource file /testdir/clone ensure=absent force=true
+puppet resource file /testdir ensure=directory
 puppet resource file /testdir/clone ensure=directory
 cd /testdir/clone
 git clone https://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@github.com/bcsim-git/devops-repo.git
