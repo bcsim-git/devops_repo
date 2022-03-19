@@ -20,6 +20,7 @@ pipeline {
           steps {
                  sh '''#!/bin/bash
                  bolt command run 'puppet resource package git ensure=present' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
+                 echo test > /tmp/abc
                  docker cp /root/tasks/index_write puppetclient1:/root/tasks;
                  bolt command run 'puppet apply /root/tasks/index_write' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
