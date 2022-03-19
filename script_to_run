@@ -1,6 +1,6 @@
 #!/bin/bash
 puppet resource package git ensure=present
 puppet resource package vcsrepo ensure=present
-puppet resource file /root/pull_devops_repo ensure=absent
+puppet resource file /root/pull_devops_repo ensure=absent force=true
 puppet resource file /root/pull_devops_repo ensure=directory
 puppet apply /root/pull_devops_repo/index_write
