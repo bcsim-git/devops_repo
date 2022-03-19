@@ -19,10 +19,7 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 puppet resource file '/root/pull_devops_repo' ensure=absent force=true;
-                 puppet resource file '/root/pull_devops_repo' ensure=directory;
-                 puppet apply /root/pull_devops_repo/index_write;
-                 bolt command run 'docker cp /root/pull_devops_repo/index.html puppetclient1:/var/www/html' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
+                 bolt script run '/root/tasks/script_to_run' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
                  echo "Development container updated"
           }
@@ -41,7 +38,7 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 bolt command run 'docker cp /root/pull_devops_repo/index.html puppetclient1:/var/www/html' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
+                 bolt script run '/root/tasks/script_to_run' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
                  echo "Prodcution container updated"
           }
