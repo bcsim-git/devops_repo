@@ -19,6 +19,7 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
+                 bolt script run '/root/scripts/check_env.sh' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  bolt command run 'puppet apply /root/tasks/index_write' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
                  echo "Development container updated"
@@ -38,6 +39,7 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
+                 bolt script run '/root/scripts/check_env.sh' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root
                  bolt command run 'puppet apply /root/tasks/index_write' -t puppetclient2 -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
                  echo "Prodcution container updated"
