@@ -1,6 +1,0 @@
-vcsrepo { '/root/pull_devops_repo':
-  ensure   => present,
-  provider => git,
-  source   => 'https://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@github.com/bcsim-git/devops-repo.git',
-}
-  
