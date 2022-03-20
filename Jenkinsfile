@@ -45,6 +45,10 @@ pipeline {
                  echo "Prodcution container updated"
           }
           }
-
+          stage('Completed updating Operation') {
+          steps {
+            echo 'Completed updating to Production Container'
+          }
+          }
       }
 }
