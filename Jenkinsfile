@@ -19,8 +19,9 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 docker cp /testdir/tasks/script_to_run puppetclient1://testdir/tasks/script_to_run;
-                 bolt script run '/testdir/tasks/script_to_run' -t puppetclient1 -u clientadm -p user123 --no-host-key-check --run-as root;
+                 targets=puppetclient1;
+                 docker cp /testdir/tasks/script_to_run $targets://testdir/tasks/script_to_run;
+                 bolt script run '/testdir/tasks/script_to_run' -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
                  echo "Development container updated"
           }
@@ -39,8 +40,9 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 docker cp /testdir/tasks/script_to_run puppetclient2://testdir/tasks/script_to_run;
-                 bolt script run '/testdir/tasks/script_to_run' -t puppetclient2 -u clientadm -p user123 --no-host-key-check --run-as root
+                 targets=puppetclient2;
+                 docker cp /testdir/tasks/script_to_run $targets://testdir/tasks/script_to_run;
+                 bolt script run '/testdir/tasks/script_to_run' -t $targets -u clientadm -p user123 --no-host-key-check --run-as root
                  '''
                  echo "Prodcution container updated"
           }
