@@ -3,7 +3,7 @@ pipeline {
       stages {
           stage('One') {
           steps {
-            echo 'Begin of Pipeline: Stage 1 completes'
+            echo 'Begin of Pipeline: Stage One completes'
           }
           }
           stage('Two') {
