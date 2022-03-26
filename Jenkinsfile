@@ -3,9 +3,8 @@ pipeline {
       stages {
           stage('One') {
           steps {
-            echo 'Begin of Pipeline: Stage One completes';
-            curl 'http://puppetclient1'
-          }
+            echo 'Begin of Pipeline: Stage One completes'
+            }
           }
           stage('Two') {
           steps {
