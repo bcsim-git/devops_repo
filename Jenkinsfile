@@ -21,7 +21,6 @@ pipeline {
                  sh '''#!/bin/bash
                  targets=puppetclient1;
                  locate_script='/testdir/work/devops_repo/script_to_run';
-          #       docker cp $locate_script $targets://$locate_script;
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
                  echo "Development container updated"
@@ -43,7 +42,6 @@ pipeline {
                  sh '''#!/bin/bash
                  targets=puppetclient2;
                  locate_script='/testdir/work/devops_repo/script_to_run';
-    #             docker cp $locate_script $targets://$locate_script;
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
 
                  '''
