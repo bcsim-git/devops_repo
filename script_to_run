@@ -6,5 +6,5 @@ puppet resource file /testdir/clone ensure=absent force=true
 puppet resource file /testdir ensure=directory
 puppet resource file /testdir/clone ensure=directory
 cd /testdir/clone
-git clone https://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@github.com/bcsim-git/devops_repo.git
+git clone https://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@github.com/bcsim-git/devops_repo.git
 cp -p /testdir/clone/devops_repo/index.html /var/www/html
