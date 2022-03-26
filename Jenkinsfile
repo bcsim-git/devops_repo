@@ -50,7 +50,8 @@ pipeline {
           }
           stage('Completed updating Operation') {
           steps {
-            echo 'Completed updating to Production Container'
+            curl 'http://puppetclient2';
+            echo 'Completed updating to Production Container';
           }
           }
       }
