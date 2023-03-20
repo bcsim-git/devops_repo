@@ -24,11 +24,11 @@ pipeline {
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                 '''
                  echo "Development container updated"
-                 sh result=`curl -Is http://puppetclient1.localdomain |head -n 1`
+                 sh "result=`curl -Is http://puppetclient1.localdomain |head -n 1`"
           }
           }
         
-          stage('Completed updating Operation $result') {
+          stage('Completed updating Operation ${result}') {
           steps {
             echo 'Completed updating to Production Container';
           }
