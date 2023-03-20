@@ -8,3 +8,4 @@ puppet resource file /testdir/clone ensure=directory
 cd /testdir/clone
 git clone https://github.com/bcsim-git/devops_repo.git
 cp -p /testdir/clone/devops_repo/index.html /var/www/html
+result=`curl -Is http://puppetclient1.localdomain |head -n 1`
