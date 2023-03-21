@@ -11,18 +11,19 @@ pipeline {
             script {     
                       env.userchoice = input message: 'Do you want to update to Development container?',
                       parameters: [choice(name: 'Verion Service', choices: 'No or Yes', description: 'choose "Yes" if you want to update to Dev Container')]
-                   } 
-            }
-          }
-          stage('Three') {
-          steps {
+                   {
                 if (userchoice == 'No') {
                     sh echo "Development NOT updated"
                 }
                 else {
                     sh echo "Development updated"
                 }
+             
+            }
           }
+          stage('Three') {
+          when {
+          environment name: 'userchoice', value: 'yes'
           steps {
                  sh '''#!/bin/bash
                  targets=puppetclient1;
