@@ -19,8 +19,10 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 mkdir -p /testdir/clone;
-	         cd /testdir/clone;
+                  puppet resource file /testdir ensure=directory;
+                  puppet resource file /testdir/clone ensure=absent force=true;
+                  puppet resource file /testdir/clone ensure=directory;
+
 	         git clone https://<your token>@github.com/<your repo>/devops_repo.git;
                  targets=puppetclient1;
                  locate_script='/testdir/work/devops_repo/script_to_run';
