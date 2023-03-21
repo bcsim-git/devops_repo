@@ -10,7 +10,7 @@ pipeline {
           steps {
             script {     
                       env.userchoice = input message: 'Do you want to update to Development container?',
-                      parameters: [choice(name: 'test', choices: 'no\nyes', description: 'choose "Proceed" if you want to update to Dev Container')]
+                      parameters: [choice(name: 'Input', choices: 'no\nyes', description: 'choose "Proceed" if you want to update to Dev Container')]
           
                    if (userchoice == 'yes') {
                       echo "Development updated"
@@ -37,7 +37,12 @@ pipeline {
         
           stage('Completed updating Operation') {
           steps {
-          
+            sh '''#!/bin/hbash
+            abc = 123;
+            result = $abc;
+            '''
+            input messages '$abc'
+            
             echo "Completed updating to Production Container"
           }
        
