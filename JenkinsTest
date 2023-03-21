@@ -41,9 +41,11 @@ pipeline {
             abc = 123;
             result = $abc;
             '''
-            input messages '$abc'
-            
+                    
             echo "Completed updating to Production Container"
+          }
+          steps {
+          input messages: '$abc'
           }
        
       }
