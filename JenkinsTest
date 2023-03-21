@@ -17,10 +17,10 @@ pipeline {
           stage('Three') {
           when {
                 if (userchoice == No) {
-                    echo 'branch "Development NOT updated"'
+                    sh 'echo "Development NOT updated"'
                 }
                 else {
-                echo 'branch "Development updated"
+                    sh 'echo "Development updated"'
                 }
           }
           steps {
