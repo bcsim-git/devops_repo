@@ -34,7 +34,7 @@ pipeline {
                 }
           }
         
-          stage('Completed updating Operation) {
+          stage('Completed updating Operation') {
           steps {
             echo 'Completed updating to Production Container';
           }
