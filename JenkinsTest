@@ -20,7 +20,7 @@ pipeline {
           steps {
                  sh '''#!/bin/bash
                  cd /testdir/clone;
-                 git clone https://<your token>@github.com/<your repo>/devops_repo.git;
+                 git clone https://github.com/<your repo>/devops_repo.git;
                  targets=puppetclient1;
                  locate_script='/testdir/clone/devops_repo/script_to_run';
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
