@@ -10,7 +10,7 @@ pipeline {
           steps {
             script {     
                       env.userchoice = input message: 'Do you want to update to Development container?',
-                      parameters: [choice(choices: 'no\yes', description: 'choose "Proceed" if you want to update to Dev Container')]
+                      parameters: [choice(choices: 'no\nyes', description: 'choose "Proceed" if you want to update to Dev Container')]
           
                    if (userchoice == 'Proceed') {
                       sh 'echo "Development updated"'
