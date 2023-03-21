@@ -3,10 +3,9 @@ apt-get update
 puppet resource package git ensure=present
 puppet resource package apache2 ensure=present
 puppet resource service apache2 ensure=running
-puppet resource file /testdir/clone ensure=absent force=true
-puppet resource file /testdir ensure=directory
-puppet resource file /testdir/clone ensure=directory
-cd /testdir/clone
+puppet resource file /tmp/clone ensure=absent force=true
+puppet resource file /tmp/clone ensure=directory
+cd /tmp/clone
 git clone https://github.com/bcsim-git/devops_repo.git
-cp -p /testdir/clone/devops_repo/index.html /var/www/html
+cp -p /testdir/tmp/devops_repo/index.html /var/www/html
 
