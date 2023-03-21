@@ -30,14 +30,15 @@ pipeline {
                  locate_script='/testdir/work/devops_repo/script_to_run';
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                 '''
-                 echo "Development container updated";
+                 sh echo "Development new container updated";
                 
                 }
           }
         
           stage('Completed updating Operation') {
           steps {
-            echo 'Completed updating to Production Container';
+          
+            sh 'echo "Completed updating to Production Container"';
           }
        
       }
