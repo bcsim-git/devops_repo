@@ -41,11 +41,12 @@ pipeline {
             abc = 123;
             '''
                     
-            echo "Completed updating to Production Container"
+            echo "Completed updating to Production Container";
+             input messages: '$abc';
           }
-          steps {
-          input messages: '$abc'
-          }
+        
+         
+
        
       }
       }
