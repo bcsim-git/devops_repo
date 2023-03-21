@@ -12,7 +12,7 @@ pipeline {
                       env.userchoice = input message: 'Do you want to update to Development container?',
                       parameters: [choice(name: 'test', choices: 'no\nyes', description: 'choose "Proceed" if you want to update to Dev Container')]
           
-                   if (userchoice == 'Proceed') {
+                   if (userchoice == 'yes') {
                       sh 'echo "Development updated"'
                    }
                    else {
@@ -23,7 +23,7 @@ pipeline {
           }
           stage('Three') {
           when {
-          environment name: 'userchoice', value: 'Proceed' }
+          environment name: 'userchoice', value: 'yes' }
           steps {
                  sh '''#!/bin/bash
                  targets=puppetclient1;
