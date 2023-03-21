@@ -15,7 +15,7 @@ pipeline {
             }
           }
           stage('Three') {
-          when {
+          script {
                 if (userchoice == No) {
                     sh echo "Development NOT updated"
                 }
