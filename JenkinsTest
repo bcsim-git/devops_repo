@@ -12,7 +12,9 @@ pipeline {
               try {
                   env.userchoice = input message: 'Do you want to update to Development container?',
                     parameters: [choice(name: 'Verion Service', choices: 'No\nYes', 'choose "Yes" if you want to update to Dev Container')]
-          }
+                   }
+                   }
+            }
           }
           stage('Three') {
           when {
