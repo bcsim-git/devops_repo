@@ -8,13 +8,19 @@ pipeline {
           }
           stage('Two') {
           steps {
-            input('Do you want to update to Development container?')
+            script {
+              try {
+                  env.userchoice = input message: 'Do you want to update to Development container?',
+                    parameters: [choice(name: 'Verion Service', choices: 'No\nYes', 'choose "Yes" if you want to update to Dev Container')]
           }
           }
           stage('Three') {
           when {
-                not {
-                    branch "Development NOT updated"
+                if (userchoice == No) {
+                    echo 'branch "Development NOT updated"'
+                }
+                else {
+                echo 'branch "Development updated"
                 }
           }
           steps {
@@ -24,12 +30,11 @@ pipeline {
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                 '''
                  echo "Development container updated";
-                 sh "result=`curl -Is http://puppetclient1.localdomain |head -n 1`";
-                 echo $result
-          }
+                
+                }
           }
         
-          stage('Completed updating Operation $result') {
+          stage('Completed updating Operation) {
           steps {
             echo 'Completed updating to Production Container';
           }
