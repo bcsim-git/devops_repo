@@ -10,13 +10,13 @@ pipeline {
           steps {
             script {     
                       env.userchoice = input message: 'Do you want to update to Development container?',
-                      parameters: [choice(name: 'Verion Service', choices: 'No or Yes', description: 'choose "Yes" if you want to update to Dev Container')]
+                      parameters: [choice(name: 'Verion Service', choices: 'No\nYes', description: 'choose "Yes" if you want to update to Dev Container')]
           
                    if (userchoice == 'No') {
-                      sh echo "Development NOT updated"
+                      sh 'echo "Development NOT updated"'
                    }
                    else {
-                      sh echo "Development updated"
+                      sh 'echo "Development updated"'
                    }
                   }
               }
