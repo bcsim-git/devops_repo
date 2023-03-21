@@ -13,10 +13,10 @@ pipeline {
                       parameters: [choice(name: 'test', choices: 'no\nyes', description: 'choose "Proceed" if you want to update to Dev Container')]
           
                    if (userchoice == 'yes') {
-                      sh 'echo "Development updated"'
+                      echo "Development updated"
                    }
                    else {
-                      sh 'echo "Development NOT updated"'
+                      echo "Development NOT updated"
                    }
                   }
               }
@@ -30,7 +30,7 @@ pipeline {
                  locate_script='/testdir/work/devops_repo/script_to_run';
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                 '''
-                 sh echo "Development new container updated";
+                 echo "Development new container updated"
                 
                 }
           }
@@ -38,7 +38,7 @@ pipeline {
           stage('Completed updating Operation') {
           steps {
           
-            sh 'echo "Completed updating to Production Container"';
+            echo "Completed updating to Production Container"
           }
        
       }
