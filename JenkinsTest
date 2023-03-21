@@ -39,7 +39,6 @@ pipeline {
           steps {
             sh '''#!/bin/hbash
             abc = 123;
-            result = $abc;
             '''
                     
             echo "Completed updating to Production Container"
