@@ -9,10 +9,10 @@ pipeline {
           stage('Two') {
           steps {
             script {
-              try {
-                  env.userchoice = input message: 'Do you want to update to Development container?',
-                    parameters: [choice(name: 'Verion Service', choices: 'No\nYes', 'choose "Yes" if you want to update to Dev Container')]
-                   }
+                 try {
+                      env.userchoice = input message: 'Do you want to update to Development container?',
+                      parameters: [choice(name: 'Verion Service', choices: 'No\nYes', 'choose "Yes" if you want to update to Dev Container')]
+                     }
                    }
             }
           }
@@ -40,6 +40,6 @@ pipeline {
           steps {
             echo 'Completed updating to Production Container';
           }
-          }
+       
       }
 }
