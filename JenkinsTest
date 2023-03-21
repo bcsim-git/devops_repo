@@ -19,10 +19,10 @@ pipeline {
           stage('Three') {
           when {
                 if (userchoice == No) {
-                    sh echo "Development NOT updated"
+                    sh '''echo "Development NOT updated"'''
                 }
                 else {
-                    sh echo "Development updated"
+                    sh '''echo "Development updated"'''
                 }
           }
           steps {
@@ -41,5 +41,6 @@ pipeline {
             echo 'Completed updating to Production Container';
           }
        
+      }
       }
 }
