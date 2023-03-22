@@ -19,7 +19,6 @@ pipeline {
           }
           steps {
                  sh '''#!/bin/bash
-                 puppet resource package git ensure=present;
                  puppet resource file /tmp/clone ensure=absent force=true;
                  puppet resource file /tmp/clone ensure=directory;
                  cd /tmp/clone;
