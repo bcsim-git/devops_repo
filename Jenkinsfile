@@ -35,7 +35,7 @@ pipeline {
                 script {
           abc = input ( 
                        message: 'Proceed to Production or Rollback',
-                       parameters: [choice(name:'',choices: ['Production', 'Rollback'])]
+                       parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback'])]
                        )
                        }
 	           }
@@ -44,14 +44,14 @@ pipeline {
              steps {
                 script {
                    if (abc == 'Rollback') {
-                   echo ' Rollback'
-                   } else if (abc == 'Production’) {
-                   sh '''#!/bin/bash
-                   targets=puppetclient2;
-                   locate_script='/tmp/clone/devops_repo/script_to_run';
-                   bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
-                   '''
-                   echo "Production container updated"
+                   echo 'Rollback'
+                   } else if (abc == 'Proceed to Production’) {
+//                   sh '''#!/bin/bash
+//                   targets=puppetclient2;
+//                   locate_script='/tmp/clone/devops_repo/script_to_run';
+ //                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+  //                 '''
+		     echo "Production container updated"
 	            }
 		 }
 	  }
