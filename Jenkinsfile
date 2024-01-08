@@ -37,12 +37,13 @@ pipeline {
                        message: 'Proceed to Production or Rollback',
                        parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback'])]
                        )
-                    }
-                }          }
+                       }
+	           }
+	    }          
           stage('Five') {
              steps {
                 script {
-                    if (reading == 'Rollback ') {
+                    if (reading == 'Rollback') {
                     echo ' Rollback'
                     } else if (reading == 'Proceed to Production’) {
                  sh '''#!/bin/bash
