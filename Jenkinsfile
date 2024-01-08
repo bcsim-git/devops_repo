@@ -35,7 +35,7 @@ pipeline {
                 script {
           reading = input ( 
                        message: 'Proceed to Production or Rollback',
-                       parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback'])]
+                       parameters: [choice(name:'',choices: ['Production', 'Rollback'])]
                        )
                        }
 	           }
@@ -45,7 +45,7 @@ pipeline {
                 script {
                    if (reading == 'Rollback') {
                    echo ' Rollback'
-                   } else if (reading == 'Proceed to Production’) {
+                   } else if (reading == 'Production’) {
                    sh '''#!/bin/bash
                    targets=puppetclient2;
                    locate_script='/tmp/clone/devops_repo/script_to_run';
