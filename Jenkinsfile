@@ -43,15 +43,15 @@ pipeline {
           stage('Five') {
              steps {
                 script {
-                    if (reading == 'Rollback') {
-                    echo ' Rollback'
-                    } else if (reading == 'Proceed to Production’) {
-                 sh '''#!/bin/bash
-                 targets=puppetclient2;
-                 locate_script='/tmp/clone/devops_repo/script_to_run';
-                 bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
-                 '''
-                 echo "Production container updated"
+                   if (reading == 'Rollback') {
+                   echo ' Rollback'
+                   } else if (reading == 'Proceed to Production’) {
+                   sh '''#!/bin/bash
+                   targets=puppetclient2;
+                   locate_script='/tmp/clone/devops_repo/script_to_run';
+                   bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+                   '''
+                   echo "Production container updated"
 	            }
 		 }
 	  }
