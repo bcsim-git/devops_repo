@@ -32,7 +32,8 @@ pipeline {
           }
 	  stage('Four') {
           steps {
-            echo 'QA Test - Pass'
+                  echo 'QA Test - Begin ......'
+		  echo 'QA Test - QA Report Generated'
           }
           }
           stage('Five') {
@@ -40,7 +41,7 @@ pipeline {
                 script {
           v1 = input ( 
                        message: 'Proceed to Production or Rollback',
-                       parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback of QA'])]
+                       parameters: [choice(name:'',choices: ['Proceed to Production', 'QA Rollback'])]
                        )
                        }
 	           }
