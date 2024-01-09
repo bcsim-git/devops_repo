@@ -60,6 +60,8 @@ pipeline {
                   v3 = `curl -IL http://$target2 |grep "OK" |wc -l`
 		  echo "v3 value is $v3" 
 		  '''
+	         }
+	   steps {
 		  if (v3 == 1) {
                   echo 'Website is running .....'
 		  } else if (v3 == 0) {
