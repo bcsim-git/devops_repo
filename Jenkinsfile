@@ -51,6 +51,7 @@ pipeline {
 		   echo "Production container updated"
 		   }	      
 		 }
+	     }
 	  }
 	  stage('Six') {
           steps {
