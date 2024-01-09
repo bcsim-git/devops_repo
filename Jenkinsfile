@@ -3,64 +3,68 @@ pipeline {
       stages {
           stage('One') {
           steps {
-            echo 'Begin of Pipeline: Stage one completes'
+            echo 'Continue from Release Phase'
           }
           }
           stage('Two') {
           steps {
-            input('Do you want to proceed to QA environment?')
-          }
-          }
-          stage('Three') {
-          when {
-                not {
-                    branch "Development NOT updated"
-                }
-          }
-          steps {
-                 sh '''#!/bin/bash
+                 echo "Proceed to Deploy Phase - Deploy to QA environment"                 
+		 sh '''#!/bin/bash
                  puppet resource file /tmp/clone ensure=absent force=true;
                  puppet resource file /tmp/clone ensure=directory;
-	   cd /tmp/clone;
-	   git clone https://github.com/bcsim-git/devops_repo.git;
-                 targets='puppetclient1.localdomain';
+	         cd /tmp/clone;
+	         git clone https://github.com/bcsim-git/devops_repo.git;
+                 target1='puppetclient1.localdomain';
                  locate_script='/tmp/clone/devops_repo/script_to_run';
-                 bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+                 bolt script run $locate_script -t $target1 -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
                  echo "QA container updated"
           }
           }
-	  stage('Four') {
+	  stage('Three') {
           steps {
                   echo 'QA Test - Begin ......'
 		  echo 'QA Test - QA Report Generated'
           }
           }
-          stage('Five') {
+          stage('Four') {
             steps {
                 script {
-          v1 = input ( 
+                v2 = input ( 
                        message: 'Action',
-                       parameters: [choice(name:'',choices: ['Proceed to Production', 'QA Rollback'])]
-                       )
+                       parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'QA Environment Rollback'])]
+                            )
                        }
 	           }
 	    }          
-          stage('Six') {
+          stage('Five') {
              steps {
                 script {
-                   if (v1 == 'Rollback') {
+                   if (v2 == 'QA Environment Rollback') {
                    echo 'Rollback of QA container Completed'
-                   } else if (v1 == 'Proceed to Production') {
+                   } else if (v2 == 'Deploy to Production Environment') {
                    sh '''#!/bin/bash
-                   targets='puppetclient2.localdomain';
+                   target2='puppetclient2.localdomain';
                    locate_script='/tmp/clone/devops_repo/script_to_run';
-                   bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+                   bolt script run $locate_script -t $target2 -u clientadm -p user123 --no-host-key-check --run-as root;
                    '''
 		   echo "Production container updated"
 		   }	      
 		 }
 	  }
+	  stage('Six') {
+          steps {
+                  echo 'Begin of Operate Phase'
+		  sh ''' #!/bin/bash
+                  v3 = `curl -IL http://$target2 |grep "OK" |wc -l`
+		  '''
+		  if (v3 = 1) {
+                  echo 'Website is running .....'
+		  } else if (v3 = 0) {
+                  echo 'Website is running .... Trigger Notification'
+		  }
+	          }
+          }
           }
       }
 }
