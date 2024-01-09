@@ -33,7 +33,7 @@ pipeline {
           stage('Four') {
             steps {
                 script {
-          abc = input ( 
+          v1 = input ( 
                        message: 'Proceed to Production or Rollback',
                        parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback'])]
                        )
@@ -43,9 +43,9 @@ pipeline {
           stage('Five') {
              steps {
                 script {
-                   if (abc == 'Rollback') {
+                   if (v1 == 'Rollback') {
                    echo 'Rollback'
-                   } else if (abc == 'Proceed to Production') {
+                   } else if (v1 == 'Proceed to Production') {
                    sh '''#!/bin/bash
                    targets='puppetclient2.localdomain';
                    locate_script='/tmp/clone/devops_repo/script_to_run';
