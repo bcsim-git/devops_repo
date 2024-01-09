@@ -8,7 +8,7 @@ pipeline {
           }
           stage('Two') {
           steps {
-            input('Do you want to update to Development container?')
+            input('Do you want to proceed to QA environment?')
           }
           }
           stage('Three') {
@@ -27,24 +27,29 @@ pipeline {
                  locate_script='/tmp/clone/devops_repo/script_to_run';
                  bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
                  '''
-                 echo "Development container updated"
+                 echo "QA container updated"
           }
           }
-          stage('Four') {
+	  stage('Four') {
+          steps {
+            echo 'QA Test - Pass'
+          }
+          }
+          stage('Five') {
             steps {
                 script {
           v1 = input ( 
                        message: 'Proceed to Production or Rollback',
-                       parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback'])]
+                       parameters: [choice(name:'',choices: ['Proceed to Production', 'Rollback of QA'])]
                        )
                        }
 	           }
 	    }          
-          stage('Five') {
+          stage('Six') {
              steps {
                 script {
                    if (v1 == 'Rollback') {
-                   echo 'Rollback'
+                   echo 'Rollback of QA container Completed'
                    } else if (v1 == 'Proceed to Production') {
                    sh '''#!/bin/bash
                    targets='puppetclient2.localdomain';
