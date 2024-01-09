@@ -57,7 +57,7 @@ pipeline {
           steps {
 		  script {
                   echo 'Begin of Operate Phase'
-		  sh 'v3 = `curl -IL http://$target2 |grep "OK" |wc -l`'
+		  v3 = `curl -IL http://$target2 |grep "OK" |wc -l`
 		  echo "v3 value is $v3" 
 	          if (v3 == 1) {
                   echo 'Website is running .....'
