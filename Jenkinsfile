@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
           v1 = input ( 
-                       message: 'Proceed to Production or Rollback',
+                       message: 'Action',
                        parameters: [choice(name:'',choices: ['Proceed to Production', 'QA Rollback'])]
                        )
                        }
