@@ -57,10 +57,11 @@ pipeline {
                   echo 'Begin of Operate Phase'
 		  sh ''' #!/bin/bash
                   v3 = `curl -IL http://$target2 |grep "OK" |wc -l`
+		  echo "v3 value is $v3" 
 		  '''
-		  if (v3 = 1) {
+		  if (v3 == 1) {
                   echo 'Website is running .....'
-		  } else if (v3 = 0) {
+		  } else if (v3 == 0) {
                   echo 'Website is running .... Trigger Notification'
 		  }
 	          }
