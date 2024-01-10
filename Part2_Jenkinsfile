@@ -32,7 +32,7 @@ pipeline {
 	  }
 	  stage('Four') {
                steps {
-	          echo Deploy to production environment successfully'
+	          echo 'Deploy to production environment successfully'
 		}
 	   }
       }
