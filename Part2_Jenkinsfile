@@ -13,7 +13,7 @@ pipeline {
                 script {
                 v2 = input ( 
                        message: 'Action',
-                       parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'QA Environment Rollback'])]
+                       parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
                        }
 	         }
@@ -22,17 +22,17 @@ pipeline {
           stage('Three') {
              steps {
                 script {
-                   if (v2 == 'QA Environment Rollback') {
-                   echo 'Rollback of QA container Completed'
+                   if (v2 == 'Rollback') {
+                   echo 'Rollback Completed'
                    } else if (v2 == 'Deploy to Production Environment') {
-  	     echo "Production container updated"
+  	            echo "Production container updated"
                    }	      
                    }
 	     }
 	  }
 	  stage('Four') {
-                   steps {
-	     echo Deploy to production environment successfully'
+               steps {
+	          echo Deploy to production environment successfully'
 		}
 	   }
       }
