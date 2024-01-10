@@ -3,18 +3,18 @@ pipeline {
       stages {
           stage('One') {
           steps {
-            echo 'Begin of Pipeline: Stage One completes!'
+            echo 'Continue from previous phase: Ready to release next environment.'
             }
           }
           stage('Two') {
           steps {
-            input('Do you want to update to Development container?')
+            input('Do you want to update to UAT container?')
           }
           }
           stage('Three') {
           when {
                 not {
-                    branch "Development NOT updated"
+                    branch "UAT container NOT updated"
                 }
           }
           steps {
@@ -28,14 +28,14 @@ pipeline {
           }
           stage('Four') {
           steps {
-            input('Do you want to update to Production container: Proceed to Production')
+            input('Do you want to update to Production container?')
                 
           }
           }
           stage('Five') {
           when {
                 not {
-                    branch "Production NOT updated"
+                    branch "Production container NOT updated"
                 }
           }
           steps {
