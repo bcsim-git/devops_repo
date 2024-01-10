@@ -3,7 +3,7 @@ pipeline {
       stages {
           stage('One') {
           steps {
-            echo 'Continue from previous phase: Ready to release next environment.'
+            echo 'Continue from previous phase: Ready to deploy to next environment.'
             }
           }
           stage('Two') {
@@ -28,7 +28,7 @@ pipeline {
           }
           stage('Four') {
           steps {
-            input('Do you want to update to Production container?')
+            input('Do you want to deploy to Production container?')
                 
           }
           }
