@@ -23,9 +23,9 @@ pipeline {
              steps {
                 script {
                    if (v2 == 'Rollback') {
-                   echo 'Rollback Completed'
+                   echo 'Stage 3: Rollback Completed'
                    } else if (v2 == 'Deploy to Production Environment') {
-  	            echo "Production container updated"
+  	            echo "Stage 3: Production container updated"
                    }	      
                    }
 	     }
@@ -34,9 +34,9 @@ pipeline {
              steps {
                 script {
                    if (v2 == 'Rollback') {
-                   echo 'Rollback Completed'
+                   echo 'Stage 4: Rollback Completed'
                    } else if (v2 == 'Deploy to Production Environment') {
-  	            echo "Production container updated"
+  	            echo "Stage 4:Production container updated"
                    }	      
                    }
 	     }
