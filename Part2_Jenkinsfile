@@ -31,9 +31,15 @@ pipeline {
 	     }
 	  }
 	  stage('Four') {
-               steps {
-	          echo 'Deploy to production environment successfully'
-		}
-	   }
+             steps {
+                script {
+                   if (v2 == 'Rollback') {
+                   echo 'Rollback Completed'
+                   } else if (v2 == 'Deploy to Production Environment') {
+  	            echo "Production container updated"
+                   }	      
+                   }
+	     }
+	  }
       }
 }
